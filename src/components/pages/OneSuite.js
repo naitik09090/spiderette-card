@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import * as _ from "lodash";
 import CardHolder from "../CardHolder";
 import Card from "../Card";
@@ -464,32 +464,33 @@ function OneSuite() {
               </div>
             ) : (
               <div>
-                <ReactCSSTransitionGroup
-                  transitionName="card"
-                  transitionEnterTimeout={500}
-                  transitionLeaveTimeout={300}
-                >
+                <TransitionGroup component={null}>
                   {deck.map((card, cardIdx) => (
-                    <div
+                    <CSSTransition
                       key={card.rank + " " + card.suit + " " + card.deck}
-                      id={card.rank + " " + card.suit + " " + card.deck}
-                      className={"card__wrapper" + (cardIdx === deck.length - 1 ? "" : " card__stack")}
-                      draggable={true}
-                      onDragStart={(e) => dragStartAction(e, card, deck)}
-                      onDrag={(e) => dragAction(e)}
-                      onDragEnter={(e) => !card.isDown && dragEnterAction(e, card, deck)}
-                      onDragEnd={(e) => dropAction(e)}
-                      onClick={() => selectCardAction(card, deck, null)}
+                      timeout={{ enter: 500, exit: 300 }}
+                      classNames="card"
                     >
-                      <Card
-                        card={card}
-                        isSelected={card.isSelected}
-                        isDown={card.isDown}
-                        isHighlighted={card.isHighlighted}
-                      />
-                    </div>
+                      <div
+                        id={card.rank + " " + card.suit + " " + card.deck}
+                        className={"card__wrapper" + (cardIdx === deck.length - 1 ? "" : " card__stack")}
+                        draggable={true}
+                        onDragStart={(e) => dragStartAction(e, card, deck)}
+                        onDrag={(e) => dragAction(e)}
+                        onDragEnter={(e) => !card.isDown && dragEnterAction(e, card, deck)}
+                        onDragEnd={(e) => dropAction(e)}
+                        onClick={() => selectCardAction(card, deck, null)}
+                      >
+                        <Card
+                          card={card}
+                          isSelected={card.isSelected}
+                          isDown={card.isDown}
+                          isHighlighted={card.isHighlighted}
+                        />
+                      </div>
+                    </CSSTransition>
                   ))}
-                </ReactCSSTransitionGroup>
+                </TransitionGroup>
               </div>
             )}
           </React.Fragment>
