@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700;900&display=swap');
+
+.card {
+  position: relative;
+  cursor: grab;
+  width: 7.5vw;
+  height: 10.5vw;
+  border-radius: 0.6vw;
+  background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f8f8f0 100%);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.4vw 0.5vw;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.card__corner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  line-height: 1;
+}
+
+.card__corner.top-left {
+  align-self: flex-start;
+}
+
+.card__corner.bottom-right {
+  align-self: flex-end;
+  transform: rotate(180deg);
+}
+
+.card__rank {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.4vw;
+}
+
+.card__symbol {
+  font-size: 1vw;
+  margin-top: -0.1vw;
+}
+
+.card__center-suit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4vw;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* Card Back - Royal Pattern */
+.card__down {
+  background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+  border: 2px solid #d4af37;
+  margin-bottom: -9.2vw !important;
+  /* Extremely tight facedown stacking as requested */
+}
+
+.card__down::after {
+  content: 'S';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Playfair Display', serif;
+  font-size: 2vw;
+  color: rgba(212, 175, 55, 0.3);
+  width: 3vw;
+  height: 3vw;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__down .card__corner,
+.card__down .card__center-suit {
+  display: none;
+}
+
+/* Selected State */
+.card__selected {
+  transform: translateY(-30px) !important;
+  border: 2px solid #d4af37 !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.3) !important;
+  z-index: 1000 !important;
+}
+
+.card__stack {
+  margin-bottom: -7.8vw;
+  /* Classic spacing for faceup cards */
+}
+
+.card__highlighted {
+  box-shadow: 0 0 20px #d4af37 !important;
+  border-color: #d4af37 !important;
+}
+
+/* Classic Styles */
+.spade,
+.club {
+  color: #1a1a1a;
+}
+
+.heart,
+.diamond {
+  color: #c0392b;
+}
+
+.card__remcards {
+  position: fixed;
+  bottom: 4vh;
+  right: 4vw;
+  z-index: 500;
+  transition: all 0.3s ease;
+}
+
+.card__remcards:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .card {
+    width: 8vh;
+    height: 11.5vh;
+    padding: 0.3vh 0.4vh;
+    border-radius: 0.5vh;
+  }
+
+  .card__rank {
+    font-size: 1.8vh;
+  }
+
+  .card__symbol {
+    font-size: 1.3vh;
+  }
+
+  .card__center-suit {
+    font-size: 5vh;
+  }
+
+  .card__stack {
+    margin-bottom: -9.5vh;
+  }
+
+  .card__down {
+    margin-bottom: -10.5vh !important;
+  }
+
+  .card__remcards {
+    bottom: 2vh;
+    right: 2vw;
+    width: 8vh;
+    height: 11.5vh;
+  }
+
+  .card__down::after {
+    font-size: 2.5vh;
+    width: 4vh;
+    height: 4vh;
+  }
+}
+
+@media screen and (max-width: 600px) and (orientation: portrait) {
+  .card {
+    width: 14vw;
+    height: 20vw;
+  }
+
+  .card__rank {
+    font-size: 3vw;
+  }
+
+  .card__symbol {
+    font-size: 2vw;
+  }
+
+  .card__center-suit {
+    font-size: 8vw;
+  }
+
+  .card__stack {
+    margin-bottom: -16vw;
+  }
+
+  .card__down {
+    margin-bottom: -18.5vw !important;
+  }
+}

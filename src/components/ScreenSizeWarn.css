@@ -1,0 +1,32 @@
+.screensizewarn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  backdrop-filter: blur(10px);
+}
+
+.alert-warning {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2rem 4rem;
+  border-radius: 1rem;
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.1rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.alert-warning strong {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}

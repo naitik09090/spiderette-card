@@ -1,0 +1,24 @@
+.cardholder {
+  width: 7.5vw;
+  height: 10.5vw;
+  border: 2px dashed rgba(212, 175, 55, 0.2);
+  border-radius: 0.6vw;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.cardholder::after {
+  content: 'GOLDEN DECK';
+  font-family: 'Playfair Display', serif;
+  font-size: 0.8vw;
+  color: rgba(212, 175, 55, 0.15);
+  letter-spacing: 0.1vw;
+}
+
+.cardholder__highlight {
+  border-color: #d4af37 !important;
+  background: rgba(212, 175, 55, 0.05) !important;
+}
