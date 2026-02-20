@@ -74,29 +74,6 @@ const removeSelection = (game, setgame) => {
   }
 };
 
-const moveCards = function (toDeck, fromDeck, fromCard, setgame, game) {
-  var tempDeck = [...game.decks];
-  var to = tempDeck.indexOf(toDeck);
-  var from = tempDeck.indexOf(fromDeck);
-
-  if (to === -1 || from === -1) return;
-  var cardIdx = tempDeck[from].indexOf(fromCard);
-  if (cardIdx === -1) return;
-
-  var movedCards = tempDeck[from].splice(cardIdx);
-  movedCards.forEach((card) => {
-    tempDeck[to].push(card);
-  });
-  try {
-    if (tempDeck[from][tempDeck[from].length - 1].isDown === true) {
-      tempDeck[from][tempDeck[from].length - 1].isDown = false;
-    }
-  } catch (err) { }
-  setgame((prevState) => ({
-    ...prevState,
-    decks: tempDeck,
-  }));
-};
 
 const checkDeck = (deck) => {
   var ranks = deck.map((card) => getRank(card.rank));
@@ -107,23 +84,6 @@ const checkDeck = (deck) => {
   return false;
 };
 
-const isHandComplete = (deck, game, setgame) => {
-  var len = checkDeck(deck);
-  if (len !== false) {
-    var tempDecks = [...game.decks];
-    var curDeckIdx = tempDecks.indexOf(deck);
-    tempDecks[curDeckIdx].splice(len);
-    var curHands = game.hands;
-    if (tempDecks[curDeckIdx].length !== 0) {
-      tempDecks[curDeckIdx][tempDecks[curDeckIdx].length - 1].isDown = false;
-    }
-    setgame((prevState) => ({
-      ...prevState,
-      decks: tempDecks,
-      hands: curHands + 1,
-    }));
-  }
-};
 
 const populateOneSuitCards = () => {
   let cards = [];
@@ -150,7 +110,7 @@ const populateOneSuitCards = () => {
 
 // --- Component ---
 function OneSuite() {
-  const [cards, setcards] = useState({});
+
   const [game, setgame] = useState({
     cards: [],
     decks: [],
@@ -356,7 +316,7 @@ function OneSuite() {
 
   const restartGame = () => {
     const val = populateOneSuitCards();
-    setcards(val);
+
     setgame({
       cards: val.cards,
       decks: val.decks,
@@ -376,7 +336,7 @@ function OneSuite() {
 
   useEffect(() => {
     const val = populateOneSuitCards();
-    setcards(val);
+
     setgame((prevState) => ({
       ...prevState,
       cards: val.cards,
