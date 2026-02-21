@@ -70,3 +70,51 @@
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
 }
+
+@media screen and (max-width: 600px) {
+    .win-content {
+        padding: 2.5rem 1.5rem;
+        width: 85vw;
+        border-radius: 1rem;
+    }
+
+    .win-title {
+        font-size: 2.2rem;
+        letter-spacing: 0.1rem;
+    }
+
+    .win-subtitle {
+        font-size: 1rem;
+        letter-spacing: 0.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .restart-btn {
+        padding: 1.2rem 2.5rem;
+        font-size: 1rem;
+        width: 100%;
+    }
+}
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .win-content {
+        padding: 1.5rem 3rem;
+        transform: scale(0.7);
+    }
+
+    .win-content.show {
+        transform: scale(0.9);
+    }
+
+    .win-title {
+        font-size: 2.5rem;
+    }
+
+    .win-subtitle {
+        margin-bottom: 1.5rem;
+    }
+
+    .restart-btn {
+        padding: 0.8rem 2rem;
+    }
+}

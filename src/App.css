@@ -71,11 +71,16 @@ body {
   }
 
   .game-header {
-    margin-bottom: 0.5vh;
+    margin-bottom: 0.2vh;
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    z-index: 100;
   }
 
   .game-title {
-    font-size: 5vh;
+    font-size: 4vh;
+    text-align: left;
   }
 }
 

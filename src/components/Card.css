@@ -134,69 +134,78 @@
 
 @media screen and (max-height: 500px) and (orientation: landscape) {
   .card {
-    width: 8vh;
-    height: 11.5vh;
-    padding: 0.3vh 0.4vh;
-    border-radius: 0.5vh;
+    width: 8.8vw;
+    height: 12.5vw;
+    padding: 0.3vw 0.4vw;
+    border-radius: 0.6vw;
   }
 
   .card__rank {
-    font-size: 1.8vh;
+    font-size: 1.8vw;
   }
 
   .card__symbol {
-    font-size: 1.3vh;
+    font-size: 1.3vw;
   }
 
   .card__center-suit {
-    font-size: 5vh;
+    font-size: 5vw;
   }
 
   .card__stack {
-    margin-bottom: -9.5vh;
+    margin-bottom: -10vw;
   }
 
   .card__down {
-    margin-bottom: -10.5vh !important;
+    margin-bottom: -11.5vw !important;
   }
 
   .card__remcards {
     bottom: 2vh;
     right: 2vw;
-    width: 8vh;
-    height: 11.5vh;
+    width: 8.8vw;
+    height: 12.5vw;
   }
 
   .card__down::after {
-    font-size: 2.5vh;
-    width: 4vh;
-    height: 4vh;
+    font-size: 2vw;
+    width: 3vw;
+    height: 3vw;
   }
 }
 
 @media screen and (max-width: 600px) and (orientation: portrait) {
   .card {
-    width: 14vw;
-    height: 20vw;
+    width: 9vw;
+    height: 13vw;
+    padding: 0.2vw 0.3vw;
+    border-radius: 0.8vw;
   }
 
   .card__rank {
-    font-size: 3vw;
+    font-size: 2.2vw;
   }
 
   .card__symbol {
-    font-size: 2vw;
+    font-size: 1.6vw;
   }
 
   .card__center-suit {
-    font-size: 8vw;
+    font-size: 5vw;
   }
 
   .card__stack {
-    margin-bottom: -16vw;
+    margin-bottom: -9.5vw;
   }
 
   .card__down {
-    margin-bottom: -18.5vw !important;
+    margin-bottom: -10.5vw !important;
+  }
+
+  .card__remcards {
+    bottom: 2vh;
+    right: 2vw;
+    width: 10vw;
+    height: 14vw;
   }
 }

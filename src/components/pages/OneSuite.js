@@ -276,6 +276,10 @@ function OneSuite() {
   const dropAction = (event) => {
     if (game.highlightedCard === "" && game.highlightedDeck !== "") {
       if (checkMovable(game.selectedCard, game.selectedDeck)) {
+        game.selected.forEach((card) => {
+          var el = document.getElementById(card.rank + " " + card.suit + " " + card.deck);
+          if (el) el.children[0].style.cssText = "";
+        });
         const newDecks = moveCardsAction(game.highlightedDeck, game.selectedDeck, game.selectedCard);
         isHandCompleteAction(game.highlightedDeck, newDecks);
         removeSelection(game, setgame);
@@ -287,7 +291,7 @@ function OneSuite() {
       if (checkMovable(game.selectedCard, game.selectedDeck)) {
         game.selected.forEach((card) => {
           var el = document.getElementById(card.rank + " " + card.suit + " " + card.deck);
-          if (el) el.children[0].style.cssText = "z-index:0;pointer-events:auto;display:none;";
+          if (el) el.children[0].style.cssText = "";
         });
         const newDecks = moveCardsAction(game.highlightedDeck, game.selectedDeck, game.selectedCard);
         isHandCompleteAction(game.highlightedDeck, newDecks);
@@ -295,14 +299,14 @@ function OneSuite() {
       } else {
         game.selected.forEach((card) => {
           var el = document.getElementById(card.rank + " " + card.suit + " " + card.deck);
-          if (el) el.children[0].style.cssText = "z-index:0;pointer-events:auto;";
+          if (el) el.children[0].style.cssText = "";
         });
         removeSelection(game, setgame);
       }
     } else {
       game.selected.forEach((card) => {
         var el = document.getElementById(card.rank + " " + card.suit + " " + card.deck);
-        if (el) el.children[0].style.cssText = "z-index:0;pointer-events:auto;";
+        if (el) el.children[0].style.cssText = "";
       });
       removeSelection(game, setgame);
     }
@@ -357,14 +361,18 @@ function OneSuite() {
 
   const dragAction = (event) => {
     game.selected.forEach((card) => {
-      var child = document.getElementById(
+      var wrapper = document.getElementById(
         card.rank + " " + card.suit + " " + card.deck
-      ).children[0];
+      );
+      if (!wrapper) return;
+      var child = wrapper.children[0];
       var movex = event.pageX - game.x;
       var movey = event.pageY - game.y;
-      var css = event.pageX === 0
-        ? "z-index:9999;transform:translate(0px,0px);display:none;"
-        : "z-index:9999;pointer-events: none; transform: scale(1.05, 1.05) rotate(0deg) translate(" + movex + "px, " + movey + "px);";
+
+      // Don't hide or reset if pageX is 0 (often happens at end of drag)
+      if (event.pageX === 0) return;
+
+      var css = "z-index:9999; pointer-events: none; transform: scale(1.05, 1.05) translate(" + movex + "px, " + movey + "px);";
       child.style.cssText = css;
     });
   };
@@ -423,7 +431,12 @@ function OneSuite() {
                 <CardHolder deck={deck} />
               </div>
             ) : (
-              <div>
+              <div
+                style={{
+                  zIndex: game.selectedDeck === deck ? 1000 : 1,
+                  position: "relative"
+                }}
+              >
                 <TransitionGroup component={null}>
                   {deck.map((card, cardIdx) => (
                     <CSSTransition

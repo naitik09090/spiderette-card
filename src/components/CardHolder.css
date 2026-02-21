@@ -22,3 +22,21 @@
   border-color: #d4af37 !important;
   background: rgba(212, 175, 55, 0.05) !important;
 }
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .cardholder {
+    width: 8.8vw;
+    height: 12.5vw;
+  }
+}
+
+@media screen and (max-width: 600px) and (orientation: portrait) {
+  .cardholder {
+    width: 9vw;
+    height: 13vw;
+  }
+
+  .cardholder::after {
+    font-size: 1.2vw;
+  }
+}
